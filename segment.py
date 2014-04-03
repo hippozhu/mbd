@@ -35,11 +35,11 @@ def my_options():
 
 def generate_seg(options):
   seq = open(options.ref).read().strip()
-  segs = [seq[start:min(start+options.length, len(seq))] for start in xrange(options.begin, len(seq), options.step)]
+  segs = [seq[start:min(start+options.length, len(seq))]\
+  for start in xrange(options.begin, len(seq)-options.length, options.step)]
   open(options.outputfile, 'w').write('\n'.join(segs))
+  print "generate %d segs" %(len(segs),)
     
 if __name__ == '__main__':
     options, args = my_options()
     generate_seg(options)
-    print options
-    print options.ref, options.step
